@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="70dp"
@@ -20,47 +19,53 @@
 
         <ImageButton
             android:id="@+id/btnHome"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/housesolid"
             android:scaleType="centerInside"
             android:background="@null"
             app:tint="@color/white"
-            android:padding="5dp"
-            android:layout_marginHorizontal="20dp"/>
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:contentDescription="Trang chủ"/>
 
         <ImageButton
             android:id="@+id/btnLike"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/heartsolid"
             android:scaleType="centerInside"
             android:background="@null"
             app:tint="@color/white"
-            android:padding="5dp"
-            android:layout_marginHorizontal="20dp"/>
+            android:padding="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:contentDescription="Công thức yêu thích"/>
 
         <ImageButton
             android:id="@+id/btnAdd"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/circleplussolid"
             android:scaleType="centerInside"
             android:background="@null"
             app:tint="@color/white"
-            android:padding="5dp"
-            android:layout_marginHorizontal="20dp"/>
+            android:padding="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:contentDescription="Đăng tải công thức"/>
 
         <ImageButton
             android:id="@+id/btnUser"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/usersolid"
             android:scaleType="centerInside"
             android:background="@null"
             app:tint="@color/white"
-            android:padding="5dp"
-            android:layout_marginHorizontal="20dp"/>
+            android:padding="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:contentDescription="Thông tin cá nhân"/>
     </LinearLayout>
 
 

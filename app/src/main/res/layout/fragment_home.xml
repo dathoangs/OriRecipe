@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment"
+    android:paddingHorizontal="20dp">
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        android:textColor="@color/black"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:textSize="40sp"
+        android:layout_marginTop="40dp"
+
+        android:text="Good Eats" />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        android:textColor="#918D8D"
+        android:fontFamily="@font/josefin_sans_bold"
+        android:textSize="20sp"
+
+        android:text="Giúp bạn có bữa ăn tuyệt vời !"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/txt2"
+        android:layout_marginTop="40dp"
+        android:paddingVertical="7dp"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/search_background_gray"
+        >
+
+        <EditText
+            android:id="@+id/edt_Search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:background="@null"
+            android:fontFamily="@font/josefin_sans"
+            android:hint="Tìm công thức ở đây..."
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btnSearch"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck"
+
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@drawable/circleplussolid"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck"
+            android:contentDescription="Nút tìm kiếm"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
