@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1094299583655",
+    "project_id": "orirecipe-c30a3",
+    "storage_bucket": "orirecipe-c30a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094299583655:android:975d328f2965220c504782",
+        "android_client_info": {
+          "package_name": "com.example.orirecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094299583655-754gfebqtblv8m54qcblip6308gbeivo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH8GKW4nL1zI5F32BYFvEN0afC---cnA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094299583655-754gfebqtblv8m54qcblip6308gbeivo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

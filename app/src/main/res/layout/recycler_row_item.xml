@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:id="@+id/myCardView"
+        app:cardElevation="3dp"
+        android:layout_margin="4dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5.5"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/ivImage"
+                android:layout_weight="3.5"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mock_recipe_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginLeft="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:padding="3dp"
+                        android:src="@drawable/usersolid"
+                        android:layout_marginRight="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textSize="17sp"
+                        android:maxLines="1"
+                        android:text="Tác giả"
+                        android:fontFamily="@font/josefin_sans"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Salad Cá hồi"
+                    android:textSize="30sp"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/josefin_sans_bold"
+
+                    android:id="@+id/tvTitle"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mô tả"
+                    android:textSize="18sp"
+                    android:maxLines="1"
+                    android:id="@+id/tvDesc"/>
+
+                <ImageButton
+                    android:id="@+id/btnLike"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/heartsolid"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    app:tint="@color/black"
+                    android:contentDescription="Công thức yêu thích"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
