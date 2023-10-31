@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.orirecipe.HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+    </androidx.fragment.app.FragmentContainerView>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="70dp"
@@ -28,10 +40,11 @@
             android:padding="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="15dp"
-            android:contentDescription="Trang chủ"/>
+            android:contentDescription="Trang chủ"
+            />
 
         <ImageButton
-            android:id="@+id/btnLike"
+            android:id="@+id/btnFavourite"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/heartsolid"
@@ -55,7 +68,7 @@
             android:contentDescription="Đăng tải công thức"/>
 
         <ImageButton
-            android:id="@+id/btnUser"
+            android:id="@+id/btnAccount"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/usersolid"
@@ -67,6 +80,7 @@
             android:layout_marginRight="5dp"
             android:contentDescription="Thông tin cá nhân"/>
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

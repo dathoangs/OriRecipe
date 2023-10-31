@@ -17,33 +17,20 @@
 
         android:textColor="@color/black"
         android:fontFamily="@font/josefin_sans_bold"
-        android:textSize="40sp"
+        android:textSize="30dp"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
 
-        android:text="Good Eats" />
+        android:text="Công thức đã thích ❤" />
 
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/txt1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="5dp"
-
-        android:textColor="#918D8D"
-        android:fontFamily="@font/josefin_sans_bold"
-        android:textSize="20sp"
-
-        android:text="Giúp bạn có bữa ăn tuyệt vời !"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/txt2"
-        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/txt1"
+        android:layout_marginTop="30dp"
         android:paddingVertical="7dp"
         android:paddingHorizontal="15dp"
         android:background="@drawable/search_background_gray"
@@ -96,7 +83,7 @@
         android:layout_alignParentTop="true"
         android:scrollbars="vertical" />
 
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

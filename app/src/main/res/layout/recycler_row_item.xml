@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="250dp"
         android:id="@+id/myCardView"
         app:cardElevation="3dp"
         android:layout_margin="4dp"
@@ -17,43 +18,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="5.5"
+            android:weightSum="7"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/ivImage"
-                android:layout_weight="3.5"
+                android:layout_weight="3.3"
                 android:scaleType="centerCrop"
                 android:src="@drawable/mock_recipe_img"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_weight="3.7"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:layout_marginLeft="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="20dp">
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
                         android:padding="3dp"
                         android:src="@drawable/usersolid"
-                        android:layout_marginRight="10dp"/>
+                        android:layout_marginRight="5dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:textSize="17sp"
+                        android:layout_height="match_parent"
+                        android:autoSizeTextType="uniform"
                         android:maxLines="1"
                         android:text="Tác giả"
-                        android:fontFamily="@font/josefin_sans"/>
+                        android:fontFamily="@font/josefin_sans" />
 
 
                 </LinearLayout>
@@ -62,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Salad Cá hồi"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:maxLines="1"
                     android:textColor="@color/black"
 
@@ -73,21 +74,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Mô tả"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:maxLines="1"
                     android:id="@+id/tvDesc"/>
 
                 <ImageButton
                     android:id="@+id/btnLike"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="3dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/heartsolid"
-                    android:scaleType="centerInside"
                     android:background="@null"
+                    android:contentDescription="Công thức yêu thích"
+                    android:padding="3dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/heartsolid"
                     app:tint="@color/black"
-                    android:contentDescription="Công thức yêu thích"/>
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>

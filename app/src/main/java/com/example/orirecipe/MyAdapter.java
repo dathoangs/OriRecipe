@@ -1,7 +1,6 @@
 package com.example.orirecipe;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ViewAdapter extends RecyclerView.Adapter<FoodViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<FoodViewHolder>{
 
     private Context mContext;
     private List<FoodData> mFoodList;
 
-    public ViewAdapter(Context mContext, List<FoodData> mFoodList) {
+    public MyAdapter(Context mContext, List<FoodData> mFoodList) {
         this.mContext = mContext;
         this.mFoodList = mFoodList;
     }
@@ -39,9 +38,6 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
-
-        System.out.println(holder.imageView);
-
         Glide.with(mContext)
                 .load(mFoodList.get(position).getItemImage())
                 .into(holder.imageView);
@@ -52,11 +48,11 @@ public class ViewAdapter extends RecyclerView.Adapter<FoodViewHolder>{
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, com.example.orirecipe.DetailActivity.class);
-                intent.putExtra("image", mFoodList.get(holder.getAdapterPosition()).getItemImage());
-                intent.putExtra("description", mFoodList.get(holder.getAdapterPosition()).getItemDesc());
-                intent.putExtra("id", mFoodList.get(holder.getAdapterPosition()).getItemId());
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, com.example.orirecipe.DetailActivity.class);
+//                intent.putExtra("image", mFoodList.get(holder.getAdapterPosition()).getItemImage());
+//                intent.putExtra("description", mFoodList.get(holder.getAdapterPosition()).getItemDesc());
+//                intent.putExtra("id", mFoodList.get(holder.getAdapterPosition()).getItemId());
+//                mContext.startActivity(intent);
             }
         });
 
