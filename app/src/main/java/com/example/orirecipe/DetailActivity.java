@@ -6,17 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -25,9 +30,11 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();;
     private String itemId;
     private ImageButton btnBack, btnFav;
+    private Button btnCmt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uID = mAuth.getCurrentUser().getUid();
+    private EditText edtCmt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +50,20 @@ public class DetailActivity extends AppCompatActivity {
         ivImage_detail = (ImageView) findViewById(R.id.ivImage_detail);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnFav = (ImageButton) findViewById(R.id.btnAddFav);
+        btnCmt = (Button) findViewById(R.id.btnCmt);
+        edtCmt = (EditText) findViewById(R.id.edtCmt);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        btnCmt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comment(edtCmt.getText().toString());
             }
         });
 
@@ -70,6 +86,38 @@ public class DetailActivity extends AppCompatActivity {
                     .load(bundle.getString("image"))
                     .into(ivImage_detail);
         }
+    }
+
+    void comment (String string){
+        db.collection("Comment").document(itemId).get()
+            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    Comment comment = task.getResult().toObject(Comment.class);
+
+                    ArrayList <String> newCommnet = new ArrayList<>();
+
+                    if (comment != null) {
+                        newCommnet = comment.getComment();
+                        newCommnet.add(string);
+                        comment.setComment(newCommnet);
+                    }
+                    else {
+                        newCommnet.add(string);
+                        comment = new Comment(newCommnet);
+                    }
+
+
+
+                    db.collection("Comment").document(itemId).set(comment)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                edtCmt.setText("");
+                            }
+                        });
+                }
+            });
     }
 
     void favUpd (String string){

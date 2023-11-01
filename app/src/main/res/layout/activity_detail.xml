@@ -101,17 +101,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="30dp"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
                 <EditText
+                    android:id="@+id/edtCmt"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:hint="Thêm bình luận..."
                     android:fontFamily="@font/josefin_sans"
                     android:color="@color/gray"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnCmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bình luận"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"/>
 
 
 
@@ -124,7 +131,8 @@
         android:src="@drawable/back_btn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@null"
+        android:background="@drawable/search_background_gray"
+
         />
 
 
