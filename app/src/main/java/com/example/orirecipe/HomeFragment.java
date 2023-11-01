@@ -74,7 +74,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
@@ -108,8 +107,8 @@ public class HomeFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot doc:task.getResult()){
                             mFoodList.add(doc.toObject(FoodData.class));
+                            myCallback.onCallback(mFoodList);
                         }
-                        myCallback.onCallback(mFoodList);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

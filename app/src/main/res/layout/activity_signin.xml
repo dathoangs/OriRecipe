@@ -80,6 +80,7 @@
                         android:backgroundTint="#E8E9E8"
                         >
                         <EditText
+                            android:id="@+id/edtEmail"
                             android:layout_width="350dp"
                             android:layout_height="50dp"
                             android:hint="Nhập email của bạn..."
@@ -116,6 +117,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/txtMail"
                         android:backgroundTint="#E8E9E8">
                         <EditText
+                            android:id="@+id/edtPass"
                             android:layout_width="350dp"
                             android:layout_height="50dp"
                             android:hint="Nhập mật khẩu của bạn..."
@@ -143,6 +145,7 @@
                         android:textColor="@color/black"
                         android:textSize="20dp"/>
                     <TextView
+                        android:id="@+id/tvSignUp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Đăng ký"
@@ -160,8 +163,6 @@
                     android:text="Đăng nhập"
 
                     android:layout_marginBottom="20dp"
-                    android:layout_constraintRight_toRightOf="parent"
-                    android:layout_constraintLeft_toLeftOf="parent"
                     />
 
             </LinearLayout>

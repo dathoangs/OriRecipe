@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-    <?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -69,14 +68,12 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-
-                        >
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/txtUserName"
-                            android:text="Tên đăng nhập"
+                            android:text="Tên người dùng"
                             android:fontFamily="@font/josefin_sans_semibold"
                             android:textColor="@color/black"
                             android:textSize="25sp"/>
@@ -88,9 +85,10 @@
                             android:backgroundTint="#E8E9E8"
                             >
                             <EditText
+                                android:id="@+id/etuser"
                                 android:layout_width="350dp"
                                 android:layout_height="50dp"
-                                android:hint="Nhập tên đăng nhập của bạn..."
+                                android:hint="Nhập họ tên của bạn..."
                                 android:fontFamily="@font/josefin_sans"
                                 android:textColor="@color/black"/>
                         </androidx.cardview.widget.CardView>
@@ -118,6 +116,7 @@
                             android:backgroundTint="#E8E9E8"
                             >
                             <EditText
+                                android:id="@+id/etEmail"
                                 android:layout_width="350dp"
                                 android:layout_height="50dp"
                                 android:hint="Nhập email của bạn..."
@@ -154,6 +153,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/txtMail"
                             android:backgroundTint="#E8E9E8">
                             <EditText
+                                android:id="@+id/etpassword"
                                 android:layout_width="350dp"
                                 android:layout_height="50dp"
                                 android:hint="Nhập mật khẩu của bạn..."
@@ -190,6 +190,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/txtMail"
                             android:backgroundTint="#E8E9E8">
                             <EditText
+                                android:id="@+id/etpasswordcheck"
                                 android:layout_width="350dp"
                                 android:layout_height="50dp"
                                 android:hint="Nhập lại mật khẩu của bạn..."
@@ -210,6 +211,7 @@
                             android:textColor="@color/black"
                             android:textSize="20dp"/>
                         <TextView
+                            android:id="@+id/login"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Đăng nhập"
@@ -219,7 +221,7 @@
                             android:padding="10dp"/>
                     </LinearLayout>
                     <Button
-                        android:id="@+id/btnDangnhap"
+                        android:id="@+id/btnDk"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
@@ -227,8 +229,6 @@
                         android:text="Đăng ký"
 
                         android:layout_marginBottom="20dp"
-                        android:layout_constraintRight_toRightOf="parent"
-                        android:layout_constraintLeft_toLeftOf="parent"
                         />
 
                 </LinearLayout>

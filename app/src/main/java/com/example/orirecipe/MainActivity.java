@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentContainerView fCV;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Context context;
+    Context context = this;
     List <FoodData> mFoodList = new ArrayList<>();
 
 
@@ -35,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            Intent myIntent = new Intent(context, SigninActivity.class);
+            startActivity(myIntent);
+            finish();
+        }
 
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         btnFavourite = (ImageButton) findViewById(R.id.btnFavourite);
@@ -46,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         btnFavourite.setOnClickListener(btnfavouriteClick);
         btnAdd.setOnClickListener(btnAddClick);
         btnAccount.setOnClickListener(btnAccountClick);
-
     }
 
     private View.OnClickListener btnHomeClick = new View.OnClickListener() {

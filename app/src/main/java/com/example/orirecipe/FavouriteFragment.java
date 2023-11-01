@@ -2,11 +2,28 @@ package com.example.orirecipe;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +40,12 @@ public class FavouriteFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView mRecyclerView;
+    private List<FoodData> mFoodList;
+    private MyAdapter myAdapter;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public FavouriteFragment() {
         // Required empty public constructor
@@ -58,7 +81,45 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false);
+        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_favourite, container, false);
+        mRecyclerView = (RecyclerView) cl.findViewById(R.id.favrecyclerView);
+        readData(new MyCallback() {
+            @Override
+            public void onCallback(List<FoodData> foodList) {
+                myAdapter = new MyAdapter(getActivity(), foodList);
+                mRecyclerView.setAdapter(myAdapter);
+            }
+        });
+        return cl;
     }
+
+    public interface MyCallback {
+        void onCallback(List<FoodData> foodList);
+    }
+
+    public void readData(MyCallback myCallback){
+        mFoodList = new ArrayList<>();
+
+        db.collection("Users").document(mAuth.getCurrentUser().getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        User user = new User();
+                        user = task.getResult().toObject(User.class);
+
+                        for (String recipeID:user.getFavRecipe()){
+                            db.collection("Recipe").document(recipeID).get()
+                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            mFoodList.add(task.getResult().toObject(FoodData.class));
+                                            myCallback.onCallback(mFoodList);
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
+
 }

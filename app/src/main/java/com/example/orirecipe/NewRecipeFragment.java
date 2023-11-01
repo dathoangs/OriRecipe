@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -75,6 +76,7 @@ public class NewRecipeFragment extends Fragment {
     private String imageUrl, key;
     private Button btnSave, btnDel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -162,29 +164,34 @@ public class NewRecipeFragment extends Fragment {
     };
 
     public void uploadRecipe(){
+        final String ID = db.collection("Recipe").document().getId();
+
         com.example.orirecipe.FoodData foodData = new com.example.orirecipe.FoodData(
-                "1",
+                ID,
                 txtName.getText().toString(),
                 txtDesc.getText().toString(),
-                imageUrl
+                imageUrl,
+                mAuth.getCurrentUser().getUid(),
+                "Hoang Dat",
+                0
         );
 
-        db.collection("Recipe")
-            .add(foodData)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(getActivity(), "Tải lên thành công", Toast.LENGTH_LONG).show();
-                    recipeImage.setImageURI(null);
-                    txtDesc.setText("");
-                    txtName.setText("");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getActivity(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
-                }
-            });
+        db.collection("Recipe").document(ID)
+                        .set(foodData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getActivity(), "Tải lên thành công", Toast.LENGTH_LONG).show();
+                                recipeImage.setImageURI(null);
+                                txtDesc.setText("");
+                                txtName.setText("");
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
 }

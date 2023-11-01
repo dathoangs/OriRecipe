@@ -9,7 +9,7 @@
 <ImageView
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:id="@+id/imvDetailRecipe"
+    android:id="@+id/ivImage_detail"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
@@ -19,7 +19,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/imvDetailRecipe"
+        app:layout_constraintTop_toBottomOf="@+id/ivImage_detail"
         app:layout_constraintLeft_toLeftOf="parent">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,19 +33,20 @@
 
             >
             <ImageButton
+                android:id="@+id/btnAddFav"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/heartsolid"
                 android:scaleType="centerInside"
-                android:background="null"
+                android:background="@null"
                 android:layout_marginTop="10dp"
-                app:tint="@color/red"
+                app:tint="@color/black"
                 android:layout_marginRight="12dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12"
+                android:text="0"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:shadowColor="@color/black"
                 android:textSize="25sp"
@@ -55,7 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvRecipeName"
                 android:text="Salad hoa quả"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:shadowColor="@color/black"
@@ -63,48 +64,14 @@
 
                 />
             <TextView
+                android:id="@+id/tvDesc_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nguyên liệu:"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:shadowColor="@color/black"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Táo tây 1 trái\nDâu tây 10 trái\nViệt quất 30 trái
-\nCam 1 trái
-\nChuối 1 trái
-\n Chanh 1 trái
-\nNho không hạt 100 gr
-\nDưa lưới 1/2 trái"
                 android:fontFamily="@font/josefin_sans"
                 android:shadowColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginLeft="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chế biến:"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:shadowColor="@color/black"
                 android:textSize="20sp"/>
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="Bước 1: Làm nước sốt trộn salad:
-\nTrong một bát to cho 50gr sốt mayonnaise, 40gr sữa đặc có đường, 2 thìa canh mật ong và nước cốt một quả chanh trộn đều thành một hỗn hợp
-\nBước 2: Trộn hoa quả với nước sốt
-\n- Sử dụng 1 cái bát lớn, cho tất cả hoa quả vào bát rồi rưới hỗn hợp sốt vừa chuẩn bị lên trên.
-\n- Cầm chắc bát tô, xóc đều để nước sốt bao quanh và ngấm nhẹ vào các loại hoa quả.
-\nBước 3: Hoàn thành món salad hoa quả trộn.
-\n- Cho bát salad vừa trộn vào tủ lạnh để khoảng 1 tiếng rồi lấy ra. Bày xà lách lên đĩa rồi cho salad lên trên là có thể thưởng thức ngay."
-                android:fontFamily="@font/josefin_sans"
-                android:shadowColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginLeft="15dp"
 
-                />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
@@ -119,7 +86,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/comment"
-                    android:background="null"/>
+                    android:background="@null"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -147,16 +114,17 @@
             </androidx.cardview.widget.CardView>
 
 
-            
+
         </LinearLayout>
     </ScrollView>
     <ImageButton
+        android:id="@+id/btnBack"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/back_btn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="null"
+        android:background="@null"
         />
 
 

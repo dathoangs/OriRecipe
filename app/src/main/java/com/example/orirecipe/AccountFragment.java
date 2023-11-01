@@ -1,12 +1,29 @@
 package com.example.orirecipe;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +63,10 @@ public class AccountFragment extends Fragment {
         return fragment;
     }
 
+    private TextView tvLogout;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +79,54 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+
+        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_account, container, false);
+
+        TextView tvUserName = (TextView) cl.findViewById(R.id.tvUserName);
+        readData(new AccountCallback() {
+            @Override
+            public void onCallback(User user) {
+                tvUserName.setText(user.getName());
+            }
+        });
+        tvLogout = (TextView) cl.findViewById(R.id.tvLogout);
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent myIntent = new Intent(getActivity(), SigninActivity.class);
+                startActivity(myIntent);
+                getActivity().getFragmentManager().popBackStack();
+            }
+        });
+
+        return cl;
     }
+
+    public interface AccountCallback {
+        void onCallback(User user);
+    }
+
+    public void readData(AccountCallback myCallback){
+
+
+        db.collection("Users").whereEqualTo("id", mAuth.getCurrentUser().getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        User user = new User();
+                        for (QueryDocumentSnapshot doc:task.getResult()){
+                            user = doc.toObject(User.class);
+                        }
+                        myCallback.onCallback(user);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
 }
