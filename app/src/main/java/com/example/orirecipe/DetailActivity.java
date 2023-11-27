@@ -29,8 +29,8 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvDesc_detail, tvRecipeName;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();;
     private String itemId;
-    private ImageButton btnBack, btnFav;
-    private Button btnCmt;
+    private ImageButton btnBack, btnFav, btnSend;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uID = mAuth.getCurrentUser().getUid();
@@ -50,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         ivImage_detail = (ImageView) findViewById(R.id.ivImage_detail);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnFav = (ImageButton) findViewById(R.id.btnAddFav);
-        btnCmt = (Button) findViewById(R.id.btnCmt);
+        btnSend = (ImageButton) findViewById(R.id.btnSend);
         edtCmt = (EditText) findViewById(R.id.edtCmt);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +60,12 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        btnCmt.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(edtCmt.getText().toString().equals("")){
+                    Toast.makeText(DetailActivity.this,"Bạn chưa nhập bình luận!", Toast.LENGTH_SHORT).show();
+                }
                 comment(edtCmt.getText().toString());
             }
         });
@@ -90,34 +93,34 @@ public class DetailActivity extends AppCompatActivity {
 
     void comment (String string){
         db.collection("Comment").document(itemId).get()
-            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    Comment comment = task.getResult().toObject(Comment.class);
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Comment comment = task.getResult().toObject(Comment.class);
 
-                    ArrayList <String> newCommnet = new ArrayList<>();
+                        ArrayList <String> newCommnet = new ArrayList<>();
 
-                    if (comment != null) {
-                        newCommnet = comment.getComment();
-                        newCommnet.add(string);
-                        comment.setComment(newCommnet);
+                        if (comment != null) {
+                            newCommnet = comment.getComment();
+                            newCommnet.add(string);
+                            comment.setComment(newCommnet);
+                        }
+                        else {
+                            newCommnet.add(string);
+                            comment = new Comment(newCommnet);
+                        }
+
+
+
+                        db.collection("Comment").document(itemId).set(comment)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        edtCmt.setText("");
+                                    }
+                                });
                     }
-                    else {
-                        newCommnet.add(string);
-                        comment = new Comment(newCommnet);
-                    }
-
-
-
-                    db.collection("Comment").document(itemId).set(comment)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                edtCmt.setText("");
-                            }
-                        });
-                }
-            });
+                });
     }
 
     void favUpd (String string){

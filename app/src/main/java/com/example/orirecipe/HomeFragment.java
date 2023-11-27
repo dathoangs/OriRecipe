@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     private List<FoodData> mFoodList;
     private MyAdapter myAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    EditText etSearchText;
 
 
     public HomeFragment() {

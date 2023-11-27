@@ -122,7 +122,8 @@
                             android:layout_height="50dp"
                             android:hint="Nhập mật khẩu của bạn..."
                             android:fontFamily="@font/josefin_sans"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:inputType="textPassword"/>
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>

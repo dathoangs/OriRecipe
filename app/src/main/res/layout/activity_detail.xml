@@ -14,44 +14,43 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
     android:src="@drawable/mon1"
-    android:scaleType="centerCrop"
-    />
+    android:scaleType="centerCrop" />
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/ivImage_detail"
         app:layout_constraintLeft_toLeftOf="parent">
         <LinearLayout
+            android:id="@+id/detailSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            >
-            <ImageButton
-                android:id="@+id/btnAddFav"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/heartsolid"
-                android:scaleType="centerInside"
-                android:background="@null"
-                android:layout_marginTop="10dp"
-                app:tint="@color/black"
-                android:layout_marginRight="12dp"
-                />
-            <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:fontFamily="@font/josefin_sans_bold"
-                android:shadowColor="@color/black"
-                android:textSize="25sp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/btnAddFav"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/heartsolid"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    android:layout_marginTop="10dp"
+                    app:tint="@color/black"
+                    android:layout_marginRight="12dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:shadowColor="@color/black"
+                    android:textSize="25sp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,16 +74,17 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="#686262"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:background="#686262" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/comment"
                     android:background="@null"/>
 
@@ -93,35 +93,43 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/josefin_sans_bold"
                     android:shadowColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:text="Bình luận"
                     android:gravity=""/>
             </LinearLayout>
+
+
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="30dp"
-                android:layout_marginTop="10dp">
+
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp">
+
                 <EditText
                     android:id="@+id/edtCmt"
-                    android:layout_width="400dp"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:hint="Thêm bình luận..."
-                    android:fontFamily="@font/josefin_sans"
                     android:color="@color/gray"
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/josefin_sans"
+                    android:hint="Thêm bình luận..."
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@null"
+                    android:src="@drawable/send"
+                    android:paddingTop="10dp"
+                    />
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btnCmt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bình luận"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/black"/>
-
-
-
+          <androidx.recyclerview.widget.RecyclerView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/rclView"/>
         </LinearLayout>
     </ScrollView>
     <ImageButton
@@ -131,10 +139,6 @@
         android:src="@drawable/back_btn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@drawable/search_background_gray"
-
-        />
-
-
+        android:background="@drawable/search_background_gray" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
