@@ -1,5 +1,6 @@
 package com.example.orirecipe;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,14 +8,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.text.TextWatcher;
+import android.widget.EditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -44,7 +47,7 @@ public class HomeFragment extends Fragment {
     private List<FoodData> mFoodList;
     private MyAdapter myAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    EditText etSearchText;
+    private  EditText etSearchText;
 
 
     public HomeFragment() {
@@ -76,6 +79,7 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -85,16 +89,46 @@ public class HomeFragment extends Fragment {
         ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_home, container, false);
 
         mRecyclerView = (RecyclerView) cl.findViewById(R.id.recyclerView);
+        etSearchText = (EditText) cl.findViewById(R.id.edt_Search);
+        etSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            } //Sau khi text đã được thay đổi thì gọi tới hàm filter
+        });
 
         readData(new MyCallback() {
             @Override
             public void onCallback(List<FoodData> foodList) {
+                mFoodList = foodList;
                 myAdapter = new MyAdapter(getActivity(), foodList);
                 mRecyclerView.setAdapter(myAdapter);
             }
         });
         return cl;
     }
+
+
+    public void filter(String string){
+      ArrayList<FoodData> filterList = new ArrayList<>(); //Mảng chứa dữ liệu sau filter
+
+       for (FoodData item: mFoodList) {
+           if (item.getItemName().toLowerCase().contains(string.toString())) {
+               filterList.add(item);
+           }
+       } //For qua tất cả công thức ban đầu
+        // Công thức nào có tên gồm text mình gõ vào thì thêm vào filterList
+
+        myAdapter.filteredList(filterList);
+       //Gọi hàm đánh động tới Adapter để nó upd lại giao diện theo list công thức đã filter
+    } //filter for search text
 
     public interface MyCallback {
         void onCallback(List<FoodData> foodList);

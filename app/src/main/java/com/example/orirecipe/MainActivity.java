@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton btnHome, btnFavourite, btnAccount, btnAdd;
+    private EditText edt_search;
     private FragmentContainerView fCV;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
