@@ -66,6 +66,7 @@ public class AccountFragment extends Fragment {
     }
 
     private TextView tvLogout;
+    private TextView tvmyrecipe;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -85,6 +86,7 @@ public class AccountFragment extends Fragment {
         ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_account, container, false);
 
         TextView tvUserName = (TextView) cl.findViewById(R.id.tvUserName);
+
         readData(new AccountCallback() {
             @Override
             public void onCallback(User user) {
@@ -110,7 +112,14 @@ public class AccountFragment extends Fragment {
                 getActivity().getFragmentManager().popBackStack();
             }
         });
-
+        tvmyrecipe = (TextView) cl.findViewById(R.id.tvMyRecipe);
+        tvmyrecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getActivity(), MyRecipe.class);
+                startActivity(myIntent);
+            }
+        });
         cl.findViewById(R.id.btnHuyDx).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -87,7 +87,10 @@
                 android:fontFamily="@font/josefin_sans_bold"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:id="@+id/txtMyrecipe"
+
+                />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
