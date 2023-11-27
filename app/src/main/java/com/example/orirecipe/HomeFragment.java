@@ -89,20 +89,20 @@ public class HomeFragment extends Fragment {
         ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.fragment_home, container, false);
 
         mRecyclerView = (RecyclerView) cl.findViewById(R.id.recyclerView);
-        etSearchText = (EditText) cl.findViewById(R.id.edt_Search);
-        etSearchText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
-            } //Sau khi text đã được thay đổi thì gọi tới hàm filter
-        });
+//        etSearchText = (EditText) cl.findViewById(R.id.edt_Search);
+//        etSearchText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                filter(editable.toString());
+//            } //Sau khi text đã được thay đổi thì gọi tới hàm filter
+//        });
 
         readData(new MyCallback() {
             @Override

@@ -62,7 +62,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_application_id"/>
+
         <provider android:authorities="com.facebook.app.FacebookContentProvider681843390718256"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>

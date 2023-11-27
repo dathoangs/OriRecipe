@@ -3,7 +3,10 @@ package com.example.orirecipe;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
@@ -35,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uID = mAuth.getCurrentUser().getUid();
     private EditText edtCmt;
+    private ShareDialog shareDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,10 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FacebookSdk.setClientToken("6869dc79126235961f86f1ce3e5bb207");
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+
+        shareDialog = new ShareDialog(this);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -93,6 +107,19 @@ public class DetailActivity extends AppCompatActivity {
         findViewById(R.id.btnShareRecipe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Testing","Testinggggggg");
+                Bitmap bitmap = ((BitmapDrawable)ivImage_detail.getDrawable()).getBitmap();
+                SharePhoto photo = new SharePhoto.Builder()
+                        .setBitmap(bitmap)
+                        .build();
+
+                if (ShareDialog.canShow(SharePhotoContent.class)){
+                    SharePhotoContent content = new SharePhotoContent.Builder()
+                            .addPhoto(photo)
+                            .build();
+                    shareDialog.show(content);
+                }
+
 
             }
         });
