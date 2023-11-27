@@ -50,6 +50,19 @@
                     android:shadowColor="@color/black"
                     android:textSize="25sp"
                     android:layout_gravity="center"/>
+
+                <ImageButton
+                    android:id="@+id/btnShareRecipe"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/share_solid"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    android:layout_marginTop="10dp"
+                    app:tint="@color/black"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="25dp"/>
+
             </LinearLayout>
 
             <TextView

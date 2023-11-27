@@ -2,4 +2,5 @@
     <string name="app_name">OriRecipe</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">681843390718256</string>
 </resources>

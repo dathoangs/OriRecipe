@@ -22,15 +22,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +84,7 @@ public class NewRecipeFragment extends Fragment {
     private Button btnSave, btnDel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private User user = new User();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,21 @@ public class NewRecipeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        db.collection("Users").whereEqualTo("id", mAuth.getCurrentUser().getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot doc:task.getResult()){
+                            user = doc.toObject(User.class);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
@@ -137,7 +160,7 @@ public class NewRecipeFragment extends Fragment {
         @Override
         public void onClick(View view) {
             StorageReference storageReference = FirebaseStorage.getInstance()
-                    .getReference().child("recipeImage").child(uri.getLastPathSegment());
+                    .getReference().child("recipeImage").child(UUID.randomUUID().toString());
 
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setMessage("Đang tải lên công thức...");
@@ -172,7 +195,7 @@ public class NewRecipeFragment extends Fragment {
                 txtDesc.getText().toString(),
                 imageUrl,
                 mAuth.getCurrentUser().getUid(),
-                "Hoang Dat",
+                user.getName(),
                 0
         );
 
@@ -193,5 +216,9 @@ public class NewRecipeFragment extends Fragment {
                     }
                 });
     }
+
+
+
+
 
 }

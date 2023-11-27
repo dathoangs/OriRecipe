@@ -89,6 +89,13 @@ public class DetailActivity extends AppCompatActivity {
                     .load(bundle.getString("image"))
                     .into(ivImage_detail);
         }
+
+        findViewById(R.id.btnShareRecipe).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     void comment (String string){

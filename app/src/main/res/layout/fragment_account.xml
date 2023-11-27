@@ -150,15 +150,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:id="@+id/logoutPopup">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bạn có muốn đăng xuất?"
             android:fontFamily="@font/josefin_sans_bold"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:padding="10dp"/>
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingVertical="20dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -172,25 +175,27 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:id="@+id/btnCo"
+                android:id="@+id/btnCoDx"
                 android:background="@drawable/btn_background"
                 android:text="CÓ"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:textSize="18sp"
                 android:textColor="#F5F5F5"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:layout_marginRight="25dp"
                 />
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:id="@+id/btnHuy"
+                android:id="@+id/btnHuyDx"
                 android:background="@drawable/btn_background"
                 android:text="HUỶ"
                 android:fontFamily="@font/josefin_sans_bold"
                 android:textSize="18sp"
                 android:textColor="#F5F5F5"
                 android:textAlignment="center"
+                android:gravity="center"
                 />
         </LinearLayout>
 

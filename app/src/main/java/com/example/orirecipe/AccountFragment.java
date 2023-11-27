@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,14 +91,30 @@ public class AccountFragment extends Fragment {
                 tvUserName.setText(user.getName());
             }
         });
+
         tvLogout = (TextView) cl.findViewById(R.id.tvLogout);
         tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cl.findViewById(R.id.logoutPopup).setVisibility(View.VISIBLE);
+            }
+        });
+
+        TextView btnRealLogout = cl.findViewById(R.id.btnCoDx);
+        btnRealLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
                 Intent myIntent = new Intent(getActivity(), SigninActivity.class);
                 startActivity(myIntent);
                 getActivity().getFragmentManager().popBackStack();
+            }
+        });
+
+        cl.findViewById(R.id.btnHuyDx).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cl.findViewById(R.id.logoutPopup).setVisibility(View.GONE);
             }
         });
 

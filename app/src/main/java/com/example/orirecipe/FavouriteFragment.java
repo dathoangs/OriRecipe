@@ -107,7 +107,7 @@ public class FavouriteFragment extends Fragment {
                         User user = new User();
                         user = task.getResult().toObject(User.class);
 
-                        for (String recipeID:user.getFavRecipe()){
+                        for (String recipeID:user.getFavRecipe().subList(1, user.getFavRecipe().size())){
                             db.collection("Recipe").document(recipeID).get()
                                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
